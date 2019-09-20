@@ -55,7 +55,7 @@ module.exports = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      title: "登录1",
+      title: "登录",
       filename: "index.html",
       template: "./src/pages/index.html",
       chunks: ['index']
