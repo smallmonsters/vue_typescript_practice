@@ -1,7 +1,7 @@
 const path = require("path")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+// const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 // https://www.jianshu.com/p/dd9afa5c4d0f
@@ -10,26 +10,25 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = {
   entry: {
     index: "./src/asset/js/index.js",
-    home: "./src/asset/js/home.js"
+    about: "./src/asset/js/about.js"
   },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js"
   },
   optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true
-      }),
-      new OptimizeCSSAssetsPlugin({})  // use OptimizeCSSAssetsPlugin
-    ],
+    // minimizer: [
+    //   // new UglifyJsPlugin({
+    //   //   cache: true,
+    //   //   parallel: true,
+    //   //   sourceMap: true
+    //   // }),
+    //   // new OptimizeCSSAssetsPlugin({})  // use OptimizeCSSAssetsPlugin
+    // ],
     splitChunks: {
       cacheGroups: {
         commons: {
-          name: 'commons',  // 提取出来的文件命名
-          // name： ‘common/common’ //  即先生成common文件夹
+          name: 'commons',  // 提取出来的公共的js文件命名
           chunks: 'initial',   // initial表示提取入口文件的公共css及
           // js部分
           // chunks: 'all' // 提取所有文件的公共部分
@@ -62,9 +61,9 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       title: "首页",
-      filename: "home.html",
-      template: "./src/pages/home.html",
-      chunks: ['home']
+      filename: "about.html",
+      template: "./src/pages/about.html",
+      chunks: ['about']
     }),
     new MiniCssExtractPlugin(
       {
