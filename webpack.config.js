@@ -8,6 +8,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 // https://segmentfault.com/a/1190000014247030
 
 module.exports = {
+  mode: "development",
   entry: {
     index: "./src/asset/js/index.js",
     about: "./src/asset/js/about.js"
@@ -17,28 +18,17 @@ module.exports = {
     filename: "[name].js"
   },
   optimization: {
-    // minimizer: [
-    //   // new UglifyJsPlugin({
-    //   //   cache: true,
-    //   //   parallel: true,
-    //   //   sourceMap: true
-    //   // }),
-    //   // new OptimizeCSSAssetsPlugin({})  // use OptimizeCSSAssetsPlugin
-    // ],
     splitChunks: {
-      cacheGroups: {
-        commons: {
-          name: 'commons',  // 提取出来的公共的js文件命名
-          chunks: 'initial',   // initial表示提取入口文件的公共css及
-          // js部分
-          // chunks: 'all' // 提取所有文件的公共部分
-          // test： '/\.css$/'  // 只提取公共css ，命名可改styles 
-          minChunks: 2, // 表示提取公共部分最少的文件数
-          minSize: 0  // 表示提取公共部分最小的大小 
-          // 如果发现页面中未引用公共文件，加上enforce: true
+      chunks: 'all',// 选择哪些chunk进行分割 
+      cacheGroups: { // 缓存组
+        styles: { // styles缓存组
+          name: "common", // 提取的公共css名称
+          minChunks: 2, // chunk被引用的最少次数
+          minSize: 1,// chunck最小大小 单位byte
+          test: /\.css$/,// 决定哪些文件使用此缓存组
         }
       }
-    }
+    },
   },
   module: {
     rules: [
@@ -68,7 +58,7 @@ module.exports = {
     new MiniCssExtractPlugin(
       {
         filename: "./css/[name].css",
-        chunkFilename: '[id].css',
+        chunkFilename: './css/[name].css',
       }
     )
   ]
