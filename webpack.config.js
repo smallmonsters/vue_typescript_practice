@@ -1,7 +1,7 @@
 const path = require("path")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 // https://www.jianshu.com/p/dd9afa5c4d0f
@@ -19,14 +19,13 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',// 选择哪些chunk进行分割 
       cacheGroups: { // 缓存组
-        styles: { // styles缓存组
-          name: "common", // 提取的公共css名称
+        common: { // styles缓存组
+          name: "commons", // 提取出来chunk的文件名,
+          chunks: 'all',// 选择哪些chunk进行分割 
           minChunks: 2, // chunk被引用的最少次数
-          minSize: 1,// chunck最小大小 单位byte
-          test: /\.css$/,// 决定哪些文件使用此缓存组
-        }
+          minSize: 0,// chunck最小大小 单位byte
+        },
       }
     },
   },
@@ -47,19 +46,20 @@ module.exports = {
       title: "登录",
       filename: "index.html",
       template: "./src/pages/index.html",
-      chunks: ['index']
+      // 在html中需要使用的chunk都要写上，包括sliptChunks中的
+      chunks: ['index', 'commons']
     }),
     new HTMLWebpackPlugin({
       title: "首页",
       filename: "about.html",
       template: "./src/pages/about.html",
-      chunks: ['about']
+      chunks: ['about', 'commons']
     }),
     new MiniCssExtractPlugin(
       {
         filename: "./css/[name].css",
         chunkFilename: './css/[name].css',
       }
-    )
+    ),
   ]
 }
