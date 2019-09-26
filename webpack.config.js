@@ -19,6 +19,7 @@ module.exports = {
       "@": path.resolve(__dirname, 'src'),
     }
   },
+  // webapck 优化项
   optimization: {
     splitChunks: {
       cacheGroups: { // 缓存组
@@ -31,8 +32,15 @@ module.exports = {
       }
     },
   },
+  // 使用babel只能将es6的语法转换成es5语法，如let => var,但是依然转换es6新增的api 如Promise
+  // 还需要 polyfill插件
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+      },
       {
         test: /\.css$/,
         use: [{
