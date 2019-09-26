@@ -14,6 +14,11 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js"
   },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, 'src'),
+    }
+  },
   optimization: {
     splitChunks: {
       cacheGroups: { // 缓存组
@@ -37,6 +42,7 @@ module.exports = {
     ]
   },
   devServer: {
+    contentBase: path.join(__dirname, 'src/pages/index.html'),
   },
   plugins: [
     new HTMLWebpackPlugin({
@@ -58,5 +64,6 @@ module.exports = {
         chunkFilename: './css/[name].css',
       }
     ),
+    new OptimizeCSSAssetsPlugin({})
   ]
 }
