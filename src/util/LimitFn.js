@@ -1,3 +1,4 @@
+
 // 函数节流
 class LimitFn {
   constructor(callback, delay = 1000) {

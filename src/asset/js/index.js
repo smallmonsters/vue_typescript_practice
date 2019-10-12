@@ -1,3 +1,6 @@
 import "../css/base.css"
 import "../css/index.css"
-alert("index")
+let name = "babel"
+new Promise((resolve, reject) => {
+  alert("index")
+})

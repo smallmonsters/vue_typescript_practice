@@ -12,7 +12,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].js"
+    filename: "[name].js",
   },
   resolve: {
     alias: {
@@ -22,6 +22,7 @@ module.exports = {
   // webapck 优化项
   optimization: {
     splitChunks: {
+      chunks: "all",
       cacheGroups: { // 缓存组
         common: { // styles缓存组
           name: "commons", // 提取出来chunk的文件名,
@@ -64,7 +65,7 @@ module.exports = {
       title: "首页",
       filename: "about.html",
       template: "./src/pages/about.html",
-      chunks: ['about', 'commons']
+      chunks: ['about', 'commons', "vendors"]
     }),
     new MiniCssExtractPlugin(
       {
