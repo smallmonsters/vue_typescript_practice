@@ -1,6 +1,6 @@
 const path = require("path")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
@@ -16,7 +16,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, 'src'),
+      "@": path.resolve(__dirname, "src"),
     }
   },
   // webapck 优化项
@@ -26,7 +26,7 @@ module.exports = {
       cacheGroups: { // 缓存组
         common: { // styles缓存组
           name: "commons", // 提取出来chunk的文件名,
-          chunks: 'all',// 选择哪些chunk进行分割 
+          chunks: "all",// 选择哪些chunk进行分割 
           minChunks: 2, // chunk被引用的最少次数
           minSize: 0,// chunck最小大小 单位byte
         },
@@ -51,7 +51,7 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, 'src/pages/index.html'),
+    contentBase: path.join(__dirname, "src/pages/index.html"),
   },
   plugins: [
     new HTMLWebpackPlugin({
@@ -59,18 +59,18 @@ module.exports = {
       filename: "index.html",
       template: "./src/pages/index.html",
       // 在html中需要使用的chunk都要写上，包括sliptChunks中的
-      chunks: ['index', 'commons']
+      chunks: ["index", "commons","vendors~index"]
     }),
     new HTMLWebpackPlugin({
       title: "首页",
       filename: "about.html",
       template: "./src/pages/about.html",
-      chunks: ['about', 'commons', "vendors"]
+      chunks: ["about", "commons", "vendors~about"]
     }),
     new MiniCssExtractPlugin(
       {
         filename: "./css/[name].css",
-        chunkFilename: './css/[name].css',
+        chunkFilename: "./css/[name].css",
       }
     ),
     new OptimizeCSSAssetsPlugin({})
