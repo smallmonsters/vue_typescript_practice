@@ -6,3 +6,4 @@ webpack学习
 
 2、[es6转换es5](https://github.com/smallmonsters/webpack_study/issues/3)
 
+3、[url-loader](https://github.com/smallmonsters/webpack_study/issues/5)
