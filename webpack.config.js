@@ -47,7 +47,19 @@ module.exports = {
         use: [{
           loader: MiniCssExtractPlugin.loader
         }, "css-loader"]
-      }
+      },
+      {
+        test: /\.(png|jpg|gif|jpeg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: false,
+              name: '[path][name].[ext]',
+            },
+          },
+        ],
+      },
     ]
   },
   devServer: {
@@ -59,7 +71,7 @@ module.exports = {
       filename: "index.html",
       template: "./src/pages/index.html",
       // 在html中需要使用的chunk都要写上，包括sliptChunks中的
-      chunks: ["index", "commons","vendors~index"]
+      chunks: ["index", "commons", "vendors~index"]
     }),
     new HTMLWebpackPlugin({
       title: "首页",
