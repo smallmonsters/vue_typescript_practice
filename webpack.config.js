@@ -8,7 +8,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
   mode: "development",
   entry: {
-    // index: "./src/index.js",
+    index: "./src/index.ts",
     register: "./src/asset/js/register.ts",
     login: "./src/asset/js/login.ts",
   },
@@ -19,6 +19,7 @@ module.exports = {
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
+      vue: 'vue/dist/vue.esm.js'
     }
   },
   // webapck 优化项
@@ -49,8 +50,9 @@ module.exports = {
         loader: "vue-loader",
       },
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         loader: "ts-loader",
+        options: { appendTsSuffixTo: [/\.vue$/] }
       },
       {
         test: /\.css$/,
@@ -76,13 +78,13 @@ module.exports = {
     contentBase: path.join(__dirname, "src/pages"),
   },
   plugins: [
-    // new HTMLWebpackPlugin({
-    //   title: "首页",
-    //   filename: "index.html",
-    //   template: "./src/pages/index.html",
-    //   // 在html中需要使用的chunk都要写上，包括sliptChunks中的
-    //   chunks: ["index", "commons", "vendors~index"]
-    // }),
+    new HTMLWebpackPlugin({
+      title: "首页",
+      filename: "index.html",
+      template: "./src/pages/index.html",
+      // 在html中需要使用的chunk都要写上，包括sliptChunks中的
+      chunks: ["index", "commons", "vendors~index"]
+    }),
     new HTMLWebpackPlugin({
       title: "注册",
       filename: "register.html",

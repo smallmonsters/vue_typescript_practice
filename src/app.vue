@@ -1,25 +1,25 @@
 <template>
   <div id="app">
-    这个是vue
+    <HelloWorld></HelloWorld>
     <a @click="jump">登录</a>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import HelloWorld from "./pages/view/HelloWorld.vue";
 export default {
   data() {
-    return {
-    }
+    return {};
   },
   methods: {
     jump() {
-      window.open(`${window.location.href}register.html`, '_self')
+      let s: string = "_self";
+      window.open(`${window.location.origin}/register.html`, s);
     }
   },
-  components: {},
-  computed: {},
-}
-
+  components: { HelloWorld },
+  computed: {}
+};
 </script>
 <style>
 </style>

@@ -11,3 +11,5 @@ webpack学习
 4、[异步引入模块](https://github.com/smallmonsters/webpack_study/issues/4)
 
 5、[ts中无法识别图片](https://github.com/smallmonsters/webpack_study/issues/7)
+
+6、[vue中使用ts](https://github.com/Microsoft/TypeScript-Vue-Starter#typescript-vue-starter)
