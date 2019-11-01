@@ -36,6 +36,8 @@
     "@babel/runtime": "^7.6.3",
     "@babel/runtime-corejs3": "^7.6.3",
     "lodash": "^4.17.15",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.1.0",
+    "vue-property-decorator": "^8.3.0"
   }
 }

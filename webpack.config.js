@@ -9,8 +9,6 @@ module.exports = {
   mode: "development",
   entry: {
     index: "./src/index.ts",
-    register: "./src/asset/js/register.ts",
-    login: "./src/asset/js/login.ts",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -84,18 +82,6 @@ module.exports = {
       template: "./src/pages/index.html",
       // 在html中需要使用的chunk都要写上，包括sliptChunks中的
       chunks: ["index", "commons", "vendors~index"]
-    }),
-    new HTMLWebpackPlugin({
-      title: "注册",
-      filename: "register.html",
-      template: "./src/pages/register.html",
-      chunks: ["register", "commons", "vendors~register"]
-    }),
-    new HTMLWebpackPlugin({
-      title: "登录",
-      filename: "login.html",
-      template: "./src/pages/login.html",
-      chunks: ["login", "commons", "vendors~login"]
     }),
     new MiniCssExtractPlugin(
       {
