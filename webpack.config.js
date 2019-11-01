@@ -3,12 +3,14 @@ const HTMLWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   mode: "development",
   entry: {
-    index: "./src/asset/js/index.js",
-    about: "./src/asset/js/about.js"
+    // index: "./src/index.js",
+    register: "./src/asset/js/register.ts",
+    login: "./src/asset/js/login.ts",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -43,6 +45,14 @@ module.exports = {
         loader: "babel-loader",
       },
       {
+        test: /\.vue$/,
+        loader: "vue-loader",
+      },
+      {
+        test: /\.ts$/,
+        loader: "ts-loader",
+      },
+      {
         test: /\.css$/,
         use: [{
           loader: MiniCssExtractPlugin.loader
@@ -63,21 +73,27 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, "src/pages/index.html"),
+    contentBase: path.join(__dirname, "src/pages"),
   },
   plugins: [
+    // new HTMLWebpackPlugin({
+    //   title: "首页",
+    //   filename: "index.html",
+    //   template: "./src/pages/index.html",
+    //   // 在html中需要使用的chunk都要写上，包括sliptChunks中的
+    //   chunks: ["index", "commons", "vendors~index"]
+    // }),
     new HTMLWebpackPlugin({
-      title: "登录",
-      filename: "index.html",
-      template: "./src/pages/index.html",
-      // 在html中需要使用的chunk都要写上，包括sliptChunks中的
-      chunks: ["index", "commons", "vendors~index"]
+      title: "注册",
+      filename: "register.html",
+      template: "./src/pages/register.html",
+      chunks: ["register", "commons", "vendors~register"]
     }),
     new HTMLWebpackPlugin({
-      title: "首页",
-      filename: "about.html",
-      template: "./src/pages/about.html",
-      chunks: ["about", "commons", "vendors~about"]
+      title: "登录",
+      filename: "login.html",
+      template: "./src/pages/login.html",
+      chunks: ["login", "commons", "vendors~login"]
     }),
     new MiniCssExtractPlugin(
       {
@@ -85,6 +101,8 @@ module.exports = {
         chunkFilename: "./css/[name].css",
       }
     ),
-    new OptimizeCSSAssetsPlugin({})
+    new OptimizeCSSAssetsPlugin({}),
+    // 使用vue必须要使用
+    new VueLoaderPlugin()
   ]
 }
