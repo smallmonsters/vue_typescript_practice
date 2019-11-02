@@ -6,11 +6,10 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Component from "vue-class-component";
-import HelloWorld from "./pages/view/HelloWorld.vue";
+import { Vue, Component } from "vue-property-decorator";
+import HelloWorld from "./view/HelloWorld.vue";
 @Component({
-  components:{HelloWorld},
+  components: { HelloWorld }
 })
 export default class App extends Vue {
   login = "登录";
@@ -20,5 +19,9 @@ export default class App extends Vue {
   }
 }
 </script>
-<style>
+<style lang="scss">
+$color: red;
+#app {
+  color: $color;
+}
 </style>

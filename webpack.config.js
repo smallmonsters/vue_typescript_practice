@@ -53,10 +53,10 @@ module.exports = {
         options: { appendTsSuffixTo: [/\.vue$/] }
       },
       {
-        test: /\.css$/,
-        use: [{
-          loader: MiniCssExtractPlugin.loader
-        }, "css-loader"]
+        test: /\.(sc|c|sa)ss$/,
+        use: [process.env.NODE_ENV !== 'production'
+          ? 'vue-style-loader'
+          : MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
       },
       {
         test: /\.(png|jpg|gif|jpeg)$/i,
@@ -73,13 +73,13 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, "src/pages"),
+    // contentBase: path.join(__dirname, "src/pages"),
   },
   plugins: [
     new HTMLWebpackPlugin({
       title: "首页",
       filename: "index.html",
-      template: "./src/pages/index.html",
+      template: "./src/index.html",
       // 在html中需要使用的chunk都要写上，包括sliptChunks中的
       chunks: ["index", "commons", "vendors~index"]
     }),
