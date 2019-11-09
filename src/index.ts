@@ -1,6 +1,7 @@
-import Vue from 'vue';
-import App from "./app.vue"
+import Vue from "vue";
+import App from "./app.vue";
+const a = "";
 new Vue({
+  render: (h) => h(App),
   // router,
-  render: h => h(App),
-}).$mount('#app')
+}).$mount("#app");
