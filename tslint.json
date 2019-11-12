@@ -2,8 +2,12 @@
   "extends": [
     "tslint:recommended"
   ],
-  "rules":{
-    "ordered-imports":false
+  "rules": {
+    "ordered-imports": false,
+    "no-console": false,
+    "no-shadowed-variable": false,
+    "no-consecutive-blank-lines": false
+
   },
   "include": [
     "src/**/*.ts",

@@ -1,16 +1,15 @@
 <template>
-  <div></div>
+<div id='index'>
+</div>
 </template>
+
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 @Component({
 })
-export default class App extends Vue {
-}
+export default class Index extends Vue {
 
-</script>
-<style lang="scss">
-#app {
-  color: $color;
 }
+</script>
+<style lang='scss'>
 </style>
