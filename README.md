@@ -6,6 +6,7 @@
 * [ts中无法识别图片](https://github.com/smallmonsters/webpack_study/issues/7)
 * [vue中使用typescript](https://github.com/smallmonsters/webpack_study/issues/8)
 * [使用Tslint](https://github.com/smallmonsters/webpack_study/issues/10)
+* [引入全局sass](https://github.com/smallmonsters/webpack_study/issues/11)
 
 #### 思考
 [在main.js中引入全局sass在webpack配置引入有什么区别](https://github.com/smallmonsters/webpack_study/issues/9)

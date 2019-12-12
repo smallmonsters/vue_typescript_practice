@@ -4,15 +4,17 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: "development",
-  entry: {
-    index: "./src/index.ts",
-  },
+  entry:"./src/index.ts",
+  // entry: {
+  //   index: "./src/index.ts",
+  // },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].js",
+    filename: "[name][hash:3].js",
   },
   resolve: {
     // extensions: ['vue','ts','js','json'],
@@ -20,6 +22,17 @@ module.exports = {
       "@": path.resolve(__dirname, "src"),
       vue: "vue/dist/vue.esm.js",
     },
+  },
+  stats: {
+    // copied from `'minimal'`
+    all: false,
+    modules: true,
+    maxModules: 0,
+    errors: true,
+    warnings: true,
+    // our additional options
+    moduleTrace: true,
+    errorDetails: true
   },
   // webapck 优化项
   optimization: {
@@ -108,6 +121,7 @@ module.exports = {
         chunkFilename: "./css/[name].css",
       },
     ),
+    new CleanWebpackPlugin(),
     new OptimizeCSSAssetsPlugin({}),
     // 使用vue必须要使用
     new VueLoaderPlugin(),

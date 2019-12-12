@@ -1,6 +1,5 @@
 <template>
-<div id='index'>
-</div>
+<div id='index'></div>
 </template>
 
 <script lang="ts">
@@ -12,4 +11,7 @@ export default class Index extends Vue {
 }
 </script>
 <style lang='scss'>
+div{
+  background: url("../../asset/image/abc.jpeg")
+}
 </style>
