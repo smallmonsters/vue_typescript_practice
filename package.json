@@ -43,7 +43,7 @@
   "dependencies": {
     "@babel/runtime": "^7.6.3",
     "@babel/runtime-corejs3": "^7.6.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "sass-resources-loader": "^2.0.1",
     "vue": "^2.6.10",
     "vue-class-component": "^7.1.0",
